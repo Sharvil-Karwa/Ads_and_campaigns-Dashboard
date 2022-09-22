@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import Feature from "./Feature";
 import NavBar from "./Navbar";
 import { Link } from "react-router-dom";
@@ -8,6 +8,8 @@ import ChooseProductS from "./svg/ChooseProducts";
 import ReadyToGo from "./svg/ReadyToGo";
 
 function Settings() {
+  const [rangeValue, setRangeValue] = useState("50");
+  const [rangeValue2, setRangeValue2] = useState("50");
   return (
     <div className="col-span-11 md:col-span-11 sm:col-span-11 flex flex-col">
       <NavBar />
@@ -86,9 +88,10 @@ function Settings() {
                 <input
                   id="default-range"
                   type="range"
-                  value="50"
                   className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                  onChange={(event) => setRangeValue(event.target.value)}
                 />
+                <div>{rangeValue}</div>
               </div>
             </div>
             <div className="my-8">
@@ -129,9 +132,10 @@ function Settings() {
                 <input
                   id="default-range"
                   type="range"
-                  value="50"
                   className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                  onChange={(event) => setRangeValue2(event.target.value)}
                 />
+                <div>{rangeValue2}</div>
               </div>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import Feature from "./Feature";
+import Feature2 from "./Feature2";
 import NavBar from "./Navbar";
 import Bulb from "./svg/Bulb";
 import { Link } from "react-router-dom";
@@ -8,6 +8,54 @@ import SettingLogo from "./svg/SettingLogo";
 import ReadyToGo from "./svg/ReadyToGo";
 
 function Campaign() {
+  const featureData = [
+    {
+      icon: "https://cdn.shopify.com/s/files/1/0521/3929/4884/products/RedVelvetCake2.jpg?v=1632143753",
+      title: "Get Leads as calls",
+      content: "Reach broad audience and get leads as calls",
+    },
+    {
+      icon: "https://cdn.shopify.com/s/files/1/0521/3929/4884/products/RedVelvetCake2.jpg?v=1632143753",
+      title: "Get Leads as Facebook Messages",
+      content: "Get more FB messages from Leads",
+    },
+    {
+      icon: "https://cdn.shopify.com/s/files/1/0521/3929/4884/products/RedVelvetCake2.jpg?v=1632143753",
+      title: "Increase page followers",
+      content: "Encourage people to follow your page",
+    },
+    {
+      icon: "https://cdn.shopify.com/s/files/1/0521/3929/4884/products/RedVelvetCake2.jpg?v=1632143753",
+      title: "Get Customer Leads",
+      content: "Reach broad audience and get leads as calls",
+    },
+    {
+      icon: "https://cdn.shopify.com/s/files/1/0521/3929/4884/products/RedVelvetCake2.jpg?v=1632143753",
+      title: "Get more Youtube views",
+      content: "Increase organic views on your Youtube videos",
+    },
+    {
+      icon: "https://cdn.shopify.com/s/files/1/0521/3929/4884/products/RedVelvetCake2.jpg?v=1632143753",
+      title: "Get more Website Traffic",
+      content: "Get the right traffic to your website",
+    },
+    {
+      icon: "https://cdn.shopify.com/s/files/1/0521/3929/4884/products/RedVelvetCake2.jpg?v=1632143753",
+      title: "Increase Live store traffic",
+      content: "Drive visits to local store",
+    },
+    {
+      icon: "https://cdn.shopify.com/s/files/1/0521/3929/4884/products/RedVelvetCake2.jpg?v=1632143753",
+      title: "Increase App Installs",
+      content: "Get more installs for your app",
+    },
+    {
+      icon: "https://cdn.shopify.com/s/files/1/0521/3929/4884/products/RedVelvetCake2.jpg?v=1632143753",
+      title: "Increase the catelogue sales",
+      content: "Get more customers to your store",
+    },
+  ];
+
   return (
     <div className="col-span-11 md:col-span-11 sm:col-span-11 flex flex-col">
       <NavBar />
@@ -43,15 +91,13 @@ function Campaign() {
           </div>
           <hr />
           <div className="grid grid-cols-3 gap-3">
-            <Feature />
-            <Feature />
-            <Feature />
-            <Feature />
-            <Feature />
-            <Feature />
-            <Feature />
-            <Feature />
-            <Feature />
+            {featureData.map((feature) => (
+              <Feature2
+                title={feature.title}
+                content={feature.content}
+                icon={feature.icon}
+              />
+            ))}
           </div>
         </div>
         <div>

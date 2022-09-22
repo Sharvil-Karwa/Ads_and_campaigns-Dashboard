@@ -1,8 +1,40 @@
 import React, { useState } from "react";
 import MiniItem from "./MiniItem";
+import Facebook from "./svg/Facebook";
+import Google from "./svg/Google";
+import Youtube from "./svg/Youtube";
 
-function Item() {
+function Item({
+  src,
+  createdOn,
+  title,
+  startDate,
+  endDate,
+  location,
+  budget,
+  clicks,
+  platform,
+}) {
   const [enabled, setEnabled] = useState(false);
+  var date = new Date(startDate);
+  var date2 = new Date(endDate);
+
+  var platformIcon;
+
+  switch (platform) {
+    case 1:
+      platformIcon = <Youtube />;
+      break;
+    case 2:
+      platformIcon = <Facebook />;
+      break;
+    case 3:
+      platformIcon = <Google />;
+      break;
+    default:
+      platformIcon = <Youtube />;
+      break;
+  }
 
   return (
     <div className="my-2">
@@ -36,26 +68,16 @@ function Item() {
           </div>
         </div>
         <div className="col-span-3">
-          <MiniItem />
+          <MiniItem src={src} createdOn={createdOn} title={title} />
         </div>
-        <div className="col-span-2">25 jul 2020 - 01 Aug 2020</div>
-        <div className="col-span-1">300</div>
-        <div className="col-span-1">INR.3,400</div>
-        <div className="col-span-1">Chennai</div>
-        <div className="col-span-1">
-          <svg
-            width="26"
-            height="18"
-            viewBox="0 0 26 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M25.3301 3.88C25.3301 3.88 25.0802 2.12 24.3105 1.34C23.3409 0.32 22.2513 0.32 21.7415 0.26C18.173 0 12.805 0 12.805 0H12.795C12.795 0 7.4271 0 3.8385 0.26C3.3387 0.32 2.2491 0.32 1.2695 1.34C0.5098 2.12 0.2599 3.88 0.2599 3.88C0.2599 3.88 0 5.96 0 8.03V9.97C0 12.04 0.2599 14.11 0.2599 14.11C0.2599 14.11 0.5098 15.87 1.2795 16.65C2.2491 17.67 3.5286 17.64 4.0984 17.74C6.1476 17.94 12.795 18 12.795 18C12.795 18 18.1729 17.99 21.7515 17.73C22.2513 17.67 23.3409 17.67 24.3205 16.65C25.0902 15.87 25.3401 14.11 25.3401 14.11C25.3401 14.11 25.6 12.04 25.6 9.97V8.03C25.59 5.96 25.3301 3.88 25.3301 3.88ZM10.1561 12.32V5.13L17.0733 8.74L10.156 12.32H10.1561Z"
-              fill="#E52D27"
-            />
-          </svg>
+        <div className="col-span-2">
+          {date.getDate()}/{date.getMonth()}/{date.getFullYear()} -{" "}
+          {date2.getDate()}/{date2.getMonth()}/{date2.getFullYear()}
         </div>
+        <div className="col-span-1">{clicks}</div>
+        <div className="col-span-1">INR.{budget}</div>
+        <div className="col-span-1">{location}</div>
+        <div className="col-span-1">{platformIcon}</div>
         <div className="col-span-1">
           <span className="bg-green-300 text-green-900 rounded-full text-center py-1 px-4">
             Live

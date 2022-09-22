@@ -40,7 +40,7 @@ function Ready() {
             <div className="font-md">(Step 4 of 4)</div>
           </div>
           <hr />
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-4 gap-4 mt-4">
             <Card />
             <Card />
             <Card />

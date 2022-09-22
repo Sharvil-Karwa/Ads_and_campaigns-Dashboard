@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Item from "./Item";
 import NavBar from "./Navbar";
 import CheckboxIcon from "./svg/CheckboxIcon";
 import PlusCircle from "./svg/PlusCircle";
 import SearchIcon from "./svg/SearchIcon";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Campaign() {
+  const [menu, setMenu] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://zocket-task-backend.herokuapp.com/api/posts")
+      .then((res) => {
+        console.log(res);
+        setMenu(res.data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  // async await with axios
+
   return (
     <div className="col-span-11 md:col-span-11 sm:col-span-11 flex flex-col">
       <NavBar />
@@ -80,11 +94,19 @@ function Campaign() {
             <div className="col-span-1">Actions</div>
           </div>
           <div className="flex flex-col mx-2">
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
+            {menu.map((item) => (
+              <Item
+                startDate={item.startDate}
+                endDate={item.endDate}
+                location={item.location}
+                budget={item.budget}
+                clicks={item.clicks}
+                title={item.title}
+                src={item.src}
+                createdOn={item.createdOn}
+                platform={item.platform}
+              />
+            ))}
           </div>
         </div>
       </div>

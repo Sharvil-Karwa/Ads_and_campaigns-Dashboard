@@ -1,6 +1,6 @@
 import React from "react";
 
-function Bell() {
+const Bell = () => {
   return (
     <div>
       <svg

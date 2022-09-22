@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Feature from "./Feature";
 import NavBar from "./Navbar";
 import { Link } from "react-router-dom";
@@ -7,8 +7,20 @@ import Speaker from "./svg/Speaker";
 import ReadyToGo from "./svg/ReadyToGo";
 import SettingLogo from "./svg/SettingLogo";
 import ChooseProducts from "./svg/ChooseProducts";
+import axios from "axios";
 
 function ChooseProduct() {
+  const [menu, setMenu] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://zocket-task-backend.herokuapp.com/api/products")
+      .then((res) => {
+        console.log(res);
+        setMenu(res.data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
   return (
     <div className="col-span-11 md:col-span-11 sm:col-span-11 flex flex-col">
       <NavBar />
@@ -44,87 +56,21 @@ function ChooseProduct() {
           </div>
           <hr />
           <div className="grid grid-cols-3 gap-3">
-            <div className="flex items-center">
-              <Feature />
-              <div class="form-check">
-                <input
-                  class="h-4 w-4 border bg-white focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                  type="checkbox"
+            {menu.map((feature) => (
+              <div className="flex items-center">
+                <Feature
+                  icon={feature.icon}
+                  title={feature.title}
+                  content={feature.content}
                 />
+                <div class="form-check">
+                  <input
+                    class="h-4 w-4 border bg-white focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                    type="checkbox"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="flex items-center">
-              <Feature />
-              <div class="form-check">
-                <input
-                  class="h-4 w-4 border bg-white focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                  type="checkbox"
-                />
-              </div>
-            </div>
-            <div className="flex items-center">
-              <Feature />
-              <div class="form-check">
-                <input
-                  class="h-4 w-4 border bg-white focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                  type="checkbox"
-                />
-              </div>
-            </div>
-            <div className="flex items-center">
-              <Feature />
-              <div class="form-check">
-                <input
-                  class="h-4 w-4 border bg-white focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                  type="checkbox"
-                />
-              </div>
-            </div>
-            <div className="flex items-center">
-              <Feature />
-              <div class="form-check">
-                <input
-                  class="h-4 w-4 border bg-white focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                  type="checkbox"
-                />
-              </div>
-            </div>
-            <div className="flex items-center">
-              <Feature />
-              <div class="form-check">
-                <input
-                  class="h-4 w-4 border bg-white focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                  type="checkbox"
-                />
-              </div>
-            </div>
-            <div className="flex items-center">
-              <Feature />
-              <div class="form-check">
-                <input
-                  class="h-4 w-4 border bg-white focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                  type="checkbox"
-                />
-              </div>
-            </div>
-            <div className="flex items-center">
-              <Feature />
-              <div class="form-check">
-                <input
-                  class="h-4 w-4 border bg-white focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                  type="checkbox"
-                />
-              </div>
-            </div>
-            <div className="flex items-center">
-              <Feature />
-              <div class="form-check">
-                <input
-                  class="h-4 w-4 border bg-white focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                  type="checkbox"
-                />
-              </div>
-            </div>
+            ))}
           </div>
         </div>
         <div>
